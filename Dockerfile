@@ -61,19 +61,20 @@ ADD ./elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ### configure and start logstash
 
 # cert/key
-RUN mkdir -p /etc/pki/tls/certs && mkdir /etc/pki/tls/private
-ADD ./logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt
-ADD ./logstash-forwarder.key /etc/pki/tls/private/logstash-forwarder.key
+#RUN mkdir -p /etc/pki/tls/certs && mkdir /etc/pki/tls/private
+#ADD ./logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt
+#ADD ./logstash-forwarder.key /etc/pki/tls/private/logstash-forwarder.key
 
 # filters
-ADD ./01-lumberjack-input.conf /etc/logstash/conf.d/01-lumberjack-input.conf
-ADD ./10-syslog.conf /etc/logstash/conf.d/10-syslog.conf
-ADD ./11-nginx.conf /etc/logstash/conf.d/11-nginx.conf
-ADD ./30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
+ADD ./if.conf /etc/logstash/conf.d/if.conf
+#ADD ./01-lumberjack-input.conf /etc/logstash/conf.d/01-lumberjack-input.conf
+#ADD ./10-syslog.conf /etc/logstash/conf.d/10-syslog.conf
+#ADD ./11-nginx.conf /etc/logstash/conf.d/11-nginx.conf
+#ADD ./30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
 
 # patterns
-ADD ./nginx.pattern /opt/logstash/patterns/nginx
-RUN chown logstash:logstash /opt/logstash/patterns/*
+#ADD ./nginx.pattern /opt/logstash/patterns/nginx
+#RUN chown logstash:logstash /opt/logstash/patterns/*
 
 
 ###############################################################################
